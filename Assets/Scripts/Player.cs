@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public float speed = 5f;
+    public float turn_speed = 0.1f;
 
     private Rigidbody2D player_rigidbody;
     private Transform player_transform;
@@ -17,15 +19,15 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-            player_transform.Rotate(0, 0, 1f);
+            player_rigidbody.AddTorque(turn_speed);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            player_transform.Rotate(0, 0, -1f);
+            player_rigidbody.AddTorque(-turn_speed);
         }
         if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
         {
-            player_rigidbody.AddForce(player_transform.up * 10f);
+            player_rigidbody.AddForce(player_transform.up * speed);
         }
     }
 }
