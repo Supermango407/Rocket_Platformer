@@ -3,7 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed = 5f;
-    public float turn_speed = 0.1f;
+    public float turn_speed = 100f;
 
     private Rigidbody2D player_rigidbody;
     private Transform player_transform;
@@ -19,15 +19,17 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-            player_rigidbody.AddTorque(turn_speed);
+            // player_transform.Rotate(0, 0, turn_speed * Time.deltaTime);
+            player_rigidbody.AddTorque(turn_speed*Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            player_rigidbody.AddTorque(-turn_speed);
+            // player_transform.Rotate(0, 0, -turn_speed * Time.deltaTime);
+            player_rigidbody.AddTorque(-turn_speed*Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
         {
-            player_rigidbody.AddForce(player_transform.up * speed);
+            player_rigidbody.AddForce(player_transform.up * speed * Time.deltaTime);
         }
     }
 }
